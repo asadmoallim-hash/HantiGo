@@ -725,6 +725,49 @@ body:has(#appView:not([hidden])) .wafab svg{width:25px;height:25px}
 .acta{font-weight:800;white-space:nowrap;font-size:.92rem;text-align:end}.acta.in{color:var(--in)}.acta.out{color:var(--out)}.acta.gone{text-decoration:line-through;opacity:.7}.acta s,.actch s{opacity:.65}
 #actMore{width:auto;justify-self:center;background:transparent;border:1px solid var(--line);border-radius:10px;padding:6px 14px}
 @media (max-width:420px){.act{grid-template-columns:auto minmax(0,1fr)}.acta{grid-column:2;text-align:start}}
+/* v131: phone dashboard + simple money report */
+.glance>.gl-top{order:0}.glance>.lbl{order:1}.glance>.val{order:2}.glance>.glbar{order:3}.glance>.glsum{order:4}.glance>.glact{order:5}.glance>.glpl{order:6}.glance>.pldet{order:7}.glance>.methods{order:8}
+@media (max-width:639px){
+  #appView .summary{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+  #appView .summary>.stat{grid-column:span 6}
+  #appView .summary>.stat.in,#appView .summary>.stat.out,html #appView .summary>.stat:has(#sNet){grid-column:span 2!important;padding:10px 10px!important;text-align:center;justify-items:center}
+  #appView .summary>.stat.in .lbl,#appView .summary>.stat.out .lbl,#appView .summary>.stat:has(#sNet) .lbl{font-size:.64rem;letter-spacing:.03em;line-height:1.2;max-width:100%}
+  #appView .summary>.stat.in .val,#appView .summary>.stat.out .val,#appView .summary>.stat:has(#sNet) .val{font-size:clamp(.92rem,4.3vw,1.15rem)}
+  #appView .summary>.stat.top-spend{padding:10px 12px}
+}
+.hjump{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:8px 2px;margin-block:-4px;position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);margin-inline:-2px}
+.hjump::-webkit-scrollbar{display:none}
+#appView[data-tab="home"] #hJump{display:flex!important}#appView[data-tab="home"] #hJump:empty{display:none!important}
+.hjump button{flex:0 0 auto;border-radius:999px!important;padding:7px 13px;font-size:.84rem;font-weight:700;border:1px solid var(--line);background:var(--surface);color:var(--ink);white-space:nowrap;min-height:38px}
+.hjump button:active{background:var(--accent-soft)}
+@media (min-width:900px){.hjump{grid-column:1/-1}#appView[data-tab="home"] #wrPanel{grid-column:1/-1}}
+#appView [data-tab="home"].panel{scroll-margin-top:64px}
+.wrpanel .wr-score{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:14px;font-weight:700;font-size:1rem;line-height:1.3}
+.wr-score small{display:block;font-weight:500;font-size:.82rem;opacity:.85}
+.wr-score[data-s="ok"]{background:var(--in-soft);color:var(--in)}.wr-score[data-s="mid"]{background:#3a2f12;color:#f3d38a}.wr-score[data-s="bad"]{background:var(--out-soft);color:var(--out)}.wr-score[data-s="none"]{background:var(--bg);color:var(--muted)}
+html:not([data-skin="3"]) .wr-score[data-s="mid"]{background:#fff4d6;color:#7a5a00}
+.wr-score i{font-style:normal;font-size:1.6rem}
+.wr-lead{font-size:1.05rem;line-height:1.55;margin:14px 0 6px}
+.wr-lead b.in{color:var(--in)}.wr-lead b.out{color:var(--out)}
+.wr-split{display:flex;height:16px;border-radius:999px;overflow:hidden;background:var(--bg);margin:8px 0 4px}
+.wr-split i{display:block;height:100%}.wr-split .o{background:var(--out)}.wr-split .k{background:var(--in)}
+.wr-key{display:flex;justify-content:space-between;gap:8px;font-size:.8rem;color:var(--muted);flex-wrap:wrap}
+.wr-key b{color:var(--ink)}.wr-100{margin:6px 0 0;font-size:.86rem}
+.wrpanel h3{font-size:.92rem;margin:16px 0 8px}
+.wr-top{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.wr-top li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;font-size:.92rem}
+.wr-top li span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wr-top li b{font-variant-numeric:tabular-nums}
+.wr-top .bar{grid-column:1/-1;height:7px;margin:0}
+.wr-facts{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:8px}
+.wr-facts li{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.9rem;line-height:1.4}
+.wr-facts li>i{font-style:normal;font-size:1.15rem;line-height:1.2}
+.wr-facts .up{color:var(--out)}.wr-facts .dn{color:var(--in)}
+.wr-tip{margin-top:12px;padding:12px 14px;border-radius:12px;border:1px dashed var(--accent);background:var(--accent-soft);font-size:.92rem;line-height:1.45}
+.wr-dl{display:grid;grid-template-columns:repeat(auto-fit,minmax(84px,1fr));gap:8px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.wr-dl span{grid-column:1/-1;font-size:.85rem;font-weight:700;color:var(--muted)}
+.wr-dl button{min-height:42px;font-weight:700;white-space:nowrap}
+@media print{#printArea .wrsplit{display:flex;height:12px;border-radius:6px;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}#printArea .wrsplit i{display:block;height:100%}#printArea .pb,#printArea .wrbox{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
 </style>
 <script src="vendor/supabase.js"></script>
 
@@ -935,6 +978,13 @@ body:has(#appView:not([hidden])) .wafab svg{width:25px;height:25px}
     <div class="stat no-person"><span class="lbl">Kaydka bishan</span><span class="val" id="sSaved">0</span><span class="note" id="sSavedAll"></span></div>
     <div class="stat top-spend"><span class="lbl">Meesha lacagta ugu badan ku baxday bishan</span><span class="val" id="sTop">—</span><span class="note" id="sTopNote">Weli kharash lama qorin.</span></div>
     <div class="stat top-spend no-person"><span class="lbl" id="topPlaceLbl">Shirkadda lacagta ugu badan laga siiyay bishan</span><span class="val" id="sTopPlace">—</span><span class="note" id="sTopPlaceNote">Ku qor magaca shirkadda marka aad kharash gelinayso.</span></div>
+  </section>
+
+  <nav class="hjump no-staff" id="hJump" data-tab="home" aria-label="Qaybaha Guriga"></nav>
+
+  <section class="panel no-staff wrpanel" aria-labelledby="wrH" data-tab="home" id="wrPanel" data-fold="wr">
+    <div class="panel-head"><h2 id="wrH">📋 Warbixinta bishan</h2></div>
+    <div id="wrBody" aria-live="polite"></div>
   </section>
 
   <section class="panel month-compare no-staff" aria-labelledby="mcH" data-tab="home" data-fold="mc" data-fold-def="1">
@@ -1311,7 +1361,7 @@ body:has(#appView:not([hidden])) .wafab svg{width:25px;height:25px}
         </div>
       </section>
 
-  <section class="panel person-only" aria-labelledby="psH" data-tab="home" id="psPanel" data-fold="ps">
+  <section class="panel person-only" aria-labelledby="psH" data-tab="home" id="psPanel" data-fold="ps" data-fold-def="1">
     <div class="panel-head"><h2 id="psH">📊 Tirakoobkayga</h2>
       <select id="psPer" aria-label="Muddada" style="width:auto"><option value="1">Bishan</option><option value="3">3-dii bilood</option><option value="12">12-kii bilood</option></select></div>
     <div class="goal-actions"><button type="button" id="psCsv">⬇ Excel</button><button type="button" id="psDoc">⬇ Word</button><button type="button" id="psPdf">🖨 PDF</button></div>
@@ -2459,8 +2509,119 @@ function render(){
   renderDebts();renderLeaves();lvRepSummary();renderStats();try{renderMgr()}catch(e){console.error(e)}renderPStats();renderCo();renderMyName();try{renderYearSum()}catch(e){console.error(e)}
   renderAlerts(bud);
   renderGoals();
+  try{renderWR(txs)}catch(e){console.error(e)}try{renderJump()}catch(e){console.error(e)}
 }
 
+/* ---------- 📋 simple money report (Warbixinta bishan): plain sentences, one bar, top 3, tip; Shakhsi + Shirkad, 4 languages ---------- */
+var WR=null;
+function wrData(txs){
+  const y=view.getFullYear(),m=view.getMonth(),now=new Date(),cur=y===now.getFullYear()&&m===now.getMonth();
+  const inM=(t,yy,mm)=>{const d=new Date(t.date+"T00:00");return d.getFullYear()===yy&&d.getMonth()===mm};
+  const pm=new Date(y,m-1,1);
+  const real=txs.filter(t=>t.cat!=="Kayd"),sm=(a,k)=>a.filter(x=>x.type===k).reduce((s,x)=>s+Number(x.amount||0),0);
+  const mon=real.filter(t=>inM(t,y,m)),prv=real.filter(t=>inM(t,pm.getFullYear(),pm.getMonth()));
+  const inc=sm(mon,"in"),out=sm(mon,"out"),pInc=sm(prv,"in"),pOut=sm(prv,"out"),left=inc-out;
+  const kayd=txs.filter(t=>t.cat==="Kayd"&&inM(t,y,m)),sav=sm(kayd,"out")-sm(kayd,"in");
+  const g={};mon.filter(t=>t.type==="out").forEach(t=>{const k=grpOf(t.cat);g[k]=(g[k]||0)+Number(t.amount||0)});
+  const groups=Object.entries(g).sort((a,b)=>b[1]-a[1]);
+  const sal=MODE==="business"?mon.filter(t=>t.type==="out"&&ROLES.has(t.cat)).reduce((s,t)=>s+Number(t.amount||0),0):0;
+  const dim=new Date(y,m+1,0).getDate(),days=cur?now.getDate():dim,perDay=days?out/days:0,forecast=cur&&days>=3&&days<dim?Math.round(perDay*dim):null;
+  const rate=inc>0?left/inc:null;
+  const score=!inc&&!out?"none":inc<=0||left<0?"bad":rate<.1?"mid":"ok";
+  const z=n=>String(n).padStart(2,"0");
+  return {y,m,cur,inc,out,left,pInc,pOut,sav,groups,sal,dim,days,perDay,forecast,rate,score,n:mon.length,
+    from:`${y}-${z(m+1)}-01`,to:`${y}-${z(m+1)}-${z(dim)}`,mName:MONTHS[m]+" "+y}}
+function wrText(d){const biz=MODE==="business",pct=v=>Math.round(v*100);
+  const S={};
+  S.title=d.cur?(biz?L("📋 Warbixinta shirkadda bishan","📋 This month's business report","📋 تقرير الشركة لهذا الشهر","📋 Ripoti ya biashara ya mwezi huu")
+      :L("📋 Warbixinta bishan si fudud","📋 This month in simple words","📋 هذا الشهر بكلمات بسيطة","📋 Mwezi huu kwa maneno rahisi"))
+    :"📋 "+(biz?L("Warbixinta shirkadda","Business report","تقرير الشركة","Ripoti ya biashara"):L("Warbixin fudud","Simple report","تقرير بسيط","Ripoti rahisi"))+": "+d.mName;
+  S.score=d.score==="ok"?[ "🟢",biz?L("Shirkaddu way faa'iidaysaa","The business is making a profit","الشركة تحقق ربحًا","Biashara inapata faida"):L("Lacagtaadu way fiican tahay","Your money is in good shape","أموالك في وضع جيد","Pesa zako ziko vizuri"),
+      L(`Waxaa haray ${pct(d.rate)}% lacagta soo gashay.`,`${pct(d.rate)}% of what came in is left.`,`تبقّى ${pct(d.rate)}% مما دخل.`,`Imebaki ${pct(d.rate)}% ya kilichoingia.`)]
+    :d.score==="mid"?["🟡",L("Taxaddar: wax yar ayaa haray","Careful: little is left","انتبه: تبقّى القليل","Kuwa makini: kidogo kimebaki"),
+      L(`Kaliya ${pct(d.rate)}% ayaa haray. Isku day kharashka inaad dhimto.`,`Only ${pct(d.rate)}% is left. Try to cut spending.`,`تبقّى ${pct(d.rate)}% فقط. حاول تقليل المصاريف.`,`Imebaki ${pct(d.rate)}% tu. Jaribu kupunguza matumizi.`)]
+    :d.score==="bad"?["🔴",biz?L("Khasaare: kharashku iibka ayuu dhaafay","Loss: spending is more than sales","خسارة: المصاريف أكثر من المبيعات","Hasara: matumizi yamezidi mauzo"):L("Digniin: kharashku dakhliga ayuu dhaafay","Warning: you spent more than came in","تحذير: أنفقت أكثر مما دخل","Onyo: umetumia zaidi ya kilichoingia"),
+      d.inc>0?L(`Waxaa kaa baxay ${money(-d.left)} ka badan inta soo gashay.`,`${money(-d.left)} more went out than came in.`,`خرج ${money(-d.left)} أكثر مما دخل.`,`Imetoka ${money(-d.left)} zaidi ya iliyoingia.`):L("Bishan wax lacag ah lama qorin oo soo gashay.","No money in has been recorded this month.","لم يُسجَّل أي دخل هذا الشهر.","Hakuna pesa iliyoingia iliyorekodiwa mwezi huu.")]
+    :["⚪",L("Bishan weli waxba lama qorin","Nothing recorded this month yet","لا شيء مسجل هذا الشهر بعد","Hakuna kilichorekodiwa mwezi huu bado"),L("Ku dar lacagta soo gashay iyo kharashka, warbixintu way buuxsami doontaa.","Add money in and spending, and this report fills itself.","أضف الدخل والمصاريف وسيمتلئ هذا التقرير تلقائيًا.","Ongeza pesa iliyoingia na matumizi, ripoti hii itajijaza.")];
+  const I=`<b class="in">${money(d.inc)}</b>`,O=`<b class="out">${money(d.out)}</b>`,K=`<b>${money(Math.abs(d.left))}</b>`;
+  S.lead=biz?(d.left>=0?L(`Iibka iyo dakhliga: ${I}. Kharashka shirkadda: ${O}. Faa'iidada: ${K}.`,`Sales and income: ${I}. Business spending: ${O}. Profit: ${K}.`,`المبيعات والدخل: ${I}. مصاريف الشركة: ${O}. الربح: ${K}.`,`Mauzo na mapato: ${I}. Matumizi ya biashara: ${O}. Faida: ${K}.`)
+      :L(`Iibka iyo dakhliga: ${I}. Kharashka shirkadda: ${O}. Khasaaraha: ${K}.`,`Sales and income: ${I}. Business spending: ${O}. Loss: ${K}.`,`المبيعات والدخل: ${I}. مصاريف الشركة: ${O}. الخسارة: ${K}.`,`Mauzo na mapato: ${I}. Matumizi ya biashara: ${O}. Hasara: ${K}.`))
+    :(d.left>=0?L(`Waxaa kuu soo galay ${I}, waxaad bixisay ${O}, waxaana kuu haray ${K}.`,`You got ${I}, spent ${O}, and kept ${K}.`,`دخل لك ${I}، وأنفقت ${O}، وتبقّى لك ${K}.`,`Ulipata ${I}, ulitumia ${O}, na umebakiwa na ${K}.`)
+      :L(`Waxaa kuu soo galay ${I}, waxaad bixisay ${O}. Waxaad dhaaftay ${K}.`,`You got ${I} and spent ${O}. You went over by ${K}.`,`دخل لك ${I} وأنفقت ${O}. تجاوزت بمقدار ${K}.`,`Ulipata ${I} na ukatumia ${O}. Umezidi kwa ${K}.`));
+  if(d.inc>0){const o=Math.min(100,Math.round(d.out/d.inc*100)),k=Math.max(0,100-o);S.o=o;S.k=k;
+    S.per100=d.out>d.inc?L(`Lacagta baxday waxay ka badan tahay tan soo gashay.`,`More went out than came in.`,`ما خرج أكثر مما دخل.`,`Kilichotoka ni zaidi ya kilichoingia.`)
+      :L(`100 kasta oo soo gasha: ${o} waa baxaan, ${k} ayaa haraa.`,`Of every 100 that came in: ${o} went out, ${k} stayed.`,`من كل 100 دخلت: خرج ${o} وبقي ${k}.`,`Kati ya kila 100 iliyoingia: ${o} zilitoka, ${k} zilibaki.`)}
+  S.topH=biz?L("Halka lacagta shirkaddu ugu badan ku baxday","Where the business money went most","أين ذهبت أموال الشركة أكثر","Pesa za biashara zilienda wapi zaidi"):L("Halka lacagtaadu ugu badan ku baxday","Where your money went most","أين ذهبت أموالك أكثر","Pesa zako zilienda wapi zaidi");
+  const f=[];
+  if(d.out>0)f.push(["📆",L(`Maalintii celcelis ahaan: <b>${money(d.perDay)}</b> kharash (${d.days} maalmood).`,`On average per day: <b>${money(d.perDay)}</b> spent (${d.days} days).`,`المتوسط اليومي: <b>${money(d.perDay)}</b> مصاريف (${d.days} يوم).`,`Wastani kwa siku: <b>${money(d.perDay)}</b> matumizi (siku ${d.days}).`)]);
+  if(d.pOut>0&&d.out>0){const ch=Math.round((d.out-d.pOut)/d.pOut*100),df=money(Math.abs(d.out-d.pOut));
+    f.push([ch>0?"⬆️":ch<0?"⬇️":"➖",ch>0?L(`Kharashku wuu <b class="up">kordhay ${ch}%</b> (+${df}) marka loo eego bishii hore.`,`Spending <b class="up">went up ${ch}%</b> (+${df}) compared with last month.`,`ارتفعت المصاريف <b class="up">${ch}%</b> (+${df}) مقارنة بالشهر الماضي.`,`Matumizi <b class="up">yamepanda ${ch}%</b> (+${df}) ukilinganisha na mwezi uliopita.`)
+      :ch<0?L(`Kharashku wuu <b class="dn">yaraaday ${-ch}%</b> (−${df}) marka loo eego bishii hore.`,`Spending <b class="dn">went down ${-ch}%</b> (−${df}) compared with last month.`,`انخفضت المصاريف <b class="dn">${-ch}%</b> (−${df}) مقارنة بالشهر الماضي.`,`Matumizi <b class="dn">yameshuka ${-ch}%</b> (−${df}) ukilinganisha na mwezi uliopita.`)
+      :L("Kharashku la mid buu yahay bishii hore.","Spending is the same as last month.","المصاريف مثل الشهر الماضي.","Matumizi ni sawa na mwezi uliopita.")])}
+  if(d.pInc>0&&d.inc>0){const ch=Math.round((d.inc-d.pInc)/d.pInc*100);if(ch)f.push([ch>0?"💹":"🔻",biz?L(`Iibku wuu ${ch>0?"kordhay":"yaraaday"} ${Math.abs(ch)}% marka loo eego bishii hore.`,`Sales went ${ch>0?"up":"down"} ${Math.abs(ch)}% compared with last month.`,`${ch>0?"ارتفعت":"انخفضت"} المبيعات ${Math.abs(ch)}% مقارنة بالشهر الماضي.`,`Mauzo ${ch>0?"yamepanda":"yameshuka"} ${Math.abs(ch)}% ukilinganisha na mwezi uliopita.`)
+    :L(`Lacagta soo gashay way ${ch>0?"kordhay":"yaraatay"} ${Math.abs(ch)}% marka loo eego bishii hore.`,`Money in went ${ch>0?"up":"down"} ${Math.abs(ch)}% compared with last month.`,`الدخل ${ch>0?"ارتفع":"انخفض"} ${Math.abs(ch)}% مقارنة بالشهر الماضي.`,`Pesa iliyoingia ${ch>0?"imepanda":"imeshuka"} ${Math.abs(ch)}% ukilinganisha na mwezi uliopita.`)])}
+  if(d.sal>0&&d.out>0)f.push(["👷",L(`Mushaharka shaqaalaha: <b>${money(d.sal)}</b>, waa ${Math.round(d.sal/d.out*100)}% kharashka.`,`Staff salaries: <b>${money(d.sal)}</b>, ${Math.round(d.sal/d.out*100)}% of spending.`,`رواتب الموظفين: <b>${money(d.sal)}</b>، أي ${Math.round(d.sal/d.out*100)}% من المصاريف.`,`Mishahara ya wafanyakazi: <b>${money(d.sal)}</b>, ni ${Math.round(d.sal/d.out*100)}% ya matumizi.`)]);
+  if(d.sav>0)f.push(["🏦",L(`Waxaad kaydisay <b>${money(d.sav)}</b> bishan.`,`You saved <b>${money(d.sav)}</b> this month.`,`ادّخرت <b>${money(d.sav)}</b> هذا الشهر.`,`Uliweka akiba ya <b>${money(d.sav)}</b> mwezi huu.`)]);
+  if(d.forecast!=null&&d.out>0)f.push(["🔮",L(`Haddii sidan ku socoto, kharashka bisha oo dhan wuxuu gaari doonaa qiyaastii <b>${money(d.forecast)}</b>.`,`If this pace continues, the whole month's spending will be about <b>${money(d.forecast)}</b>.`,`إذا استمر هذا المعدل، ستبلغ مصاريف الشهر كله نحو <b>${money(d.forecast)}</b>.`,`Kasi hii ikiendelea, matumizi ya mwezi mzima yatakuwa karibu <b>${money(d.forecast)}</b>.`)]);
+  S.facts=f;
+  const top=d.groups[0],tp=top&&d.out?Math.round(top[1]/d.out*100):0,tn=top?grpLabel(top[0]):"";
+  S.tip=d.score==="none"?"":d.score==="bad"&&top?L(`Kharashka ugu badan waa <b>${esc(tn)}</b> (${tp}%). Halkaas ka bilow dhimista si aad uga baxdo khasaaraha.`,`The biggest cost is <b>${esc(tn)}</b> (${tp}%). Start cutting there to get out of the loss.`,`أكبر مصروف هو <b>${esc(tn)}</b> (${tp}%). ابدأ بالتقليل منه للخروج من الخسارة.`,`Gharama kubwa zaidi ni <b>${esc(tn)}</b> (${tp}%). Anza kupunguza hapo ili kutoka kwenye hasara.`)
+    :top&&tp>=35?L(`<b>${esc(tn)}</b> wuxuu qaatay ${tp}% kharashka. Haddii aad 10% ka dhimto, waxaa kuu haraya ${money(top[1]*.1)} dheeraad ah bil kasta.`,`<b>${esc(tn)}</b> took ${tp}% of spending. Cutting it by 10% would leave you ${money(top[1]*.1)} more each month.`,`<b>${esc(tn)}</b> أخذ ${tp}% من المصاريف. تقليله 10% يوفر لك ${money(top[1]*.1)} إضافية كل شهر.`,`<b>${esc(tn)}</b> imechukua ${tp}% ya matumizi. Ukipunguza kwa 10% utabakiwa na ${money(top[1]*.1)} zaidi kila mwezi.`)
+    :d.score==="ok"&&d.rate>=.2?(biz?L(`Faa'iido wanaagsan. Qayb ka mid ah u dhig kayd ama ku maalgeli ganacsiga.`,`Good profit. Put part of it aside or reinvest in the business.`,`ربح جيد. ادّخر جزءًا منه أو أعد استثماره في العمل.`,`Faida nzuri. Weka sehemu akiba au wekeza tena kwenye biashara.`)
+      :L(`Aad baad u fiican tahay! Isku day inaad ${money(d.left*.5)} u dhigto kayd ama yool.`,`Well done! Try to put ${money(d.left*.5)} into savings or a goal.`,`أحسنت! حاول أن تضع ${money(d.left*.5)} في الادخار أو هدف.`,`Hongera! Jaribu kuweka ${money(d.left*.5)} kwenye akiba au lengo.`))
+    :L("Qor kharash kasta isla maalinta, si warbixintu u noqoto mid sax ah.","Write down every expense the same day so the report stays correct.","سجّل كل مصروف في نفس اليوم ليبقى التقرير دقيقًا.","Andika kila matumizi siku hiyo hiyo ili ripoti ibaki sahihi.");
+  return S}
+function renderWR(txs){const box=$("wrBody");if(!box)return;
+  const d=wrData(txs),S=wrText(d);WR={d,S};
+  $("wrH").textContent=S.title;
+  const top3=d.groups.slice(0,3);
+  box.innerHTML=`<div class="wr-score" data-s="${d.score}"><i aria-hidden="true">${S.score[0]}</i><span>${S.score[1]}<small>${S.score[2]}</small></span></div>`
+   +(d.score==="none"?"":`<p class="wr-lead">${S.lead}</p>`
+   +(S.o!=null?`<div class="wr-split" role="img" aria-label="${esc(S.per100)}"><i class="o" style="width:${S.o}%"></i><i class="k" style="width:${S.k}%"></i></div><div class="wr-key"><span>🔴 ${L("Baxay","Out","خرج","Imetoka")} <b>${S.o}%</b></span><span>🟢 ${biz2(L("Haray","Left","تبقّى","Imebaki"))} <b>${S.k}%</b></span></div><p class="note wr-100">${esc(S.per100)}</p>`:"")
+   +(top3.length?`<h3>${S.topH}</h3><ul class="wr-top">${top3.map(([g,v])=>`<li><span>${esc(grpLabel(g))}</span><b>${money(v)} · ${Math.round(v/d.out*100)}%</b><div class="bar"><i style="width:${Math.max(3,v/top3[0][1]*100)}%"></i></div></li>`).join("")}</ul>`:"")
+   +(S.facts.length?`<ul class="wr-facts">${S.facts.map(([ic,t])=>`<li><i aria-hidden="true">${ic}</i><span>${t}</span></li>`).join("")}</ul>`:"")
+   +(S.tip?`<div class="wr-tip">💡 <b>${L("Talo","Tip","نصيحة","Ushauri")}:</b> ${S.tip}</div>`:"")
+   +`<div class="wr-dl"><span>${L("Soo deji warbixintan fudud:","Download this simple report:","تنزيل هذا التقرير البسيط:","Pakua ripoti hii rahisi:")}</span><button type="button" data-wrdl="x">⬇ Excel</button><button type="button" data-wrdl="w">⬇ Word</button>${NATIVE?"":`<button type="button" data-wrdl="p">🖨 PDF</button>`}</div>`);
+  box.querySelectorAll("[data-wrdl]").forEach(b=>b.onclick=()=>wrExport(b.dataset.wrdl))}
+const biz2=s=>MODE==="business"?L("Faa'iido","Profit","ربح","Faida"):s;
+const strip=h=>String(h).replace(/<[^>]+>/g,"");
+const wrFile=ext=>`HantiGo-${brandName()}-warbixin-fudud-${WR.d.from.slice(0,7)}.${ext}`.replace(/[^\p{L}\p{N}_.@ -]+/gu,"_");
+function wrHtml(print){const {d,S}=WR,pct=v=>d.out?Math.round(v/d.out*100)+"%":"";
+  const col=d.score==="ok"?"#0b7a4b":d.score==="mid"?"#9a6b00":d.score==="bad"?"#c0392b":"#555";
+  return `${coHead()}<p>${esc(strip(S.title))} · ${esc(d.mName)} · ${esc(modeLabel())}</p>
+  <div class="wrbox" style="border:2px solid ${col};border-radius:8px;padding:8px 12px;margin:8px 0"><b style="color:${col};font-size:14pt">${S.score[0]} ${esc(S.score[1])}</b><br>${esc(S.score[2])}</div>
+  ${d.score==="none"?"":`<p style="font-size:12pt">${S.lead.replace(/class="in"/g,'style="color:#0b7a4b"').replace(/class="out"/g,'style="color:#c0392b"')}</p>`}
+  ${S.o!=null?(print?`<div class="wrsplit"><i style="width:${S.o}%;background:#e5534b"></i><i style="width:${S.k}%;background:#20a070"></i></div>`:"")+`<p>${esc(S.per100)}</p>`:""}
+  <table><tr><th>${L("Soo galay","Money in","دخل","Iliingia")}</th><th>${L("Ka baxay","Money out","خرج","Ilitoka")}</th><th>${MODE==="business"?L("Faa'iido / khasaare","Profit / loss","الربح / الخسارة","Faida / hasara"):L("Haray","Left","تبقّى","Imebaki")}</th></tr>
+  <tr><td class="n">${money(d.inc)}</td><td class="n">${money(d.out)}</td><td class="n" style="font-weight:700;color:${d.left<0?"#c0392b":"#0b7a4b"}">${d.left<0?"−":""}${money(Math.abs(d.left))}</td></tr></table>
+  ${d.groups.length?`<h2>${esc(S.topH)}</h2><table><tr><th>${L("Mowduuca","Topic","الموضوع","Mada")}</th><th>${L("Qadarka","Amount","المبلغ","Kiasi")}</th><th>%</th>${print?"<th></th>":""}</tr>${d.groups.map(([g,v])=>`<tr><td>${esc(grpLabel(g))}</td><td class="n">${money(v)}</td><td class="n">${pct(v)}</td>${print?`<td style="width:35%"><div class="pb" style="width:${(v/d.groups[0][1]*100).toFixed(1)}%;background:#e5534b"></div></td>`:""}</tr>`).join("")}</table>`:""}
+  ${S.facts.length?`<h2>${L("Waxa la ogaaday","What we found","ما وجدناه","Tulichogundua")}</h2><ul>${S.facts.map(([ic,t])=>`<li>${ic} ${strip(t)}</li>`).join("")}</ul>`:""}
+  ${S.tip?`<p><b>💡 ${L("Talo","Tip","نصيحة","Ushauri")}:</b> ${strip(S.tip)}</p>`:""}`}
+function wrExport(k){if(!WR)return;
+  if(k==="p"){$("printArea").innerHTML=wrHtml(true)+stFoot();
+    document.body.classList.add("printing");const done=()=>{document.body.classList.remove("printing");window.removeEventListener("afterprint",done)};
+    window.addEventListener("afterprint",done);setTimeout(()=>{window.print();setTimeout(done,1000)},50);return}
+  if(k==="w"){const doc=`<html${RTL?' dir="rtl"':""} xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>HantiGo</title>
+<style>body{font-family:Calibri,Arial,sans-serif;font-size:11pt}h1{color:#0b7a4b}h2{font-size:13pt;margin-top:14pt}table{border-collapse:collapse;width:100%;margin:6pt 0}th,td{border:1px solid #999;padding:4pt 6pt;text-align:${RTL?"right":"left"}}th{background:#e8f5ee}.n{text-align:right}</style></head><body>${wrHtml(false)+stFoot()}</body></html>`;
+    saveFile(wrFile("doc"),"﻿"+doc,"application/msword");return}
+  const {d,S}=WR;
+  exportSheet(strip(S.title)+" · "+d.mName,[
+    {title:S.score[0]+" "+S.score[1],colorFirst:1,head:[L("Soo galay","Income"),L("Ka baxay","Expenses"),MODE==="business"?L("Faa'iido","Profit"):L("Lacagta haray","Left over")],rows:[[d.inc,d.out,d.left]]},
+    {title:strip(S.topH),head:[L("Mowduuca","Topic","الموضوع","Mada"),L("Qadarka","Amount","المبلغ","Kiasi"),"%"],rows:d.groups.map(([g,v])=>[grpLabel(g),v,d.out?v/d.out:0])},
+    {title:L("Waxa la ogaaday","What we found","ما وجدناه","Tulichogundua"),head:[L("Faahfaahin","Details")],rows:[[S.score[2]],...(S.per100?[[S.per100]]:[]),...S.facts.map(([ic,t])=>[ic+" "+strip(t)]),...(S.tip?[["💡 "+strip(S.tip)]]:[])]}
+  ],wrFile("x").slice(0,-2))}
+/* phone: chips that jump to each home section (only the ones this account can see) */
+function renderJump(){const nav=$("hJump");if(!nav||$("appView").dataset.tab!=="home")return;
+  const biz=MODE==="business";
+  const list=[["wrPanel","📋 "+L("Warbixin","Report","تقرير","Ripoti")],["dyPanel","📅 "+L("Maalmaha","Days","الأيام","Siku")],["chartH","📈 "+L("Jaantus","Chart","رسم بياني","Chati")],
+    [biz?"stPanel":"catH",biz?"📊 "+L("Tirakoob","Statistics","إحصاءات","Takwimu"):"🍕 "+L("Kharashka","Spending","المصاريف","Matumizi")],["psPanel","📊 "+L("Tirakoob","Statistics","إحصاءات","Takwimu")],["mgPanel","🏢 "+L("Maamul","Manage","إدارة","Usimamizi")]];
+  const sec=id=>{const e=$(id);return e?(e.tagName==="SECTION"?e:e.closest("section")):null};
+  const vis=list.filter(([id,t])=>{const s=sec(id);return t&&s&&!s.hidden&&getComputedStyle(s).display!=="none"});
+  const key=vis.map(v=>v[0]).join()+LANG;if(nav.dataset.k===key)return;nav.dataset.k=key;
+  nav.innerHTML=vis.map(([id,t])=>`<button type="button" data-jump="${id}">${t}</button>`).join("");
+  if(!nav.dataset.on){nav.dataset.on=1;nav.addEventListener("click",e=>{const b=e.target.closest("[data-jump]");if(!b)return;const s=sec(b.dataset.jump);if(!s)return;
+    if(s.classList.contains("folded"))s.querySelector(".foldbtn")?.click();
+    const y=s.getBoundingClientRect().top+window.scrollY-nav.offsetHeight-8;window.scrollTo({top:y,behavior:"smooth"})})}}
 /* ---------- savings goals: target date + monthly amount ---------- */
 const ymOf=iso=>{const d=new Date(String(iso).slice(0,10)+"T00:00");return d.getFullYear()*12+d.getMonth()};
 const ymNow=()=>{const d=new Date();return d.getFullYear()*12+d.getMonth()};
