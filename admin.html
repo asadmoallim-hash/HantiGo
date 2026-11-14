@@ -133,6 +133,18 @@ button.stat:hover{border-color:var(--accent)}
 button.stat[aria-pressed=true]{border-color:var(--accent);box-shadow:0 0 0 3px rgba(61,220,151,.35);outline:0}
 button.stat[aria-pressed=true] small{color:var(--accent)}
 .plist-h{margin:0;font-size:.9rem;color:var(--muted);font-weight:600}
+/* v132 phone: tables as cards */
+@media (max-width:639px){
+  .stw{overflow:visible;border:0}
+  .stbl,.stbl tbody{display:block;min-width:0!important}
+  .stbl tr:first-child:has(th){display:none}
+  .stbl tr{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;padding:12px 14px;margin-top:10px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+  .stbl td{display:flex;flex-direction:column;gap:1px;padding:0!important;border:0!important;min-width:0!important;white-space:normal!important;text-align:start!important;overflow-wrap:anywhere}
+  .stbl td::before{content:attr(data-label);font-size:.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+  .stbl td[data-label=""]::before,.stbl td:first-child::before{content:none}
+  .stbl tr.tot{background:var(--accent-soft)}.stbl tr.tot td{background:none}
+  .stbl td:first-child{grid-column:1/-1;font-weight:700;padding-bottom:6px!important;border-bottom:1px solid var(--line)!important}
+}
 </style>
 <script src="vendor/supabase.js"></script>
 </head>
@@ -556,5 +568,9 @@ $("q").addEventListener("input",render);
   if(!me?.is_admin){$("msg").textContent="Boggan waxaa geli kara maamulaha oo keliya.";return}
   load()})();
 </script>
+<script>/* v132: each cell gets its column name, so rows show as cards on a phone */
+(()=>{let q=0;const run=()=>{q=0;document.querySelectorAll("table.stbl").forEach(t=>{const h=t.rows[0];if(!h||!h.querySelector("th"))return;const hs=[...h.cells].map(c=>c.textContent.trim());
+  for(let i=1;i<t.rows.length;i++)[...t.rows[i].cells].forEach((c,j)=>{const v=hs[j]||"";if(c.dataset.label!==v)c.dataset.label=v})})};
+  new MutationObserver(()=>{if(!q)q=requestAnimationFrame(run)}).observe(document.body,{childList:true,subtree:true});run()})();</script>
 </body>
 </html>
